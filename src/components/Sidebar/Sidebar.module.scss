@@ -1,0 +1,49 @@
+.sidebar {
+  width: 280px;
+  background-color: #fafafa;
+  border-right: 1px solid #ddd;
+  padding: 12px;
+  overflow-y: auto;
+}
+
+.toggleButtons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+
+  button {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &.active {
+      background-color: #007bff;
+      color: white;
+      border-color: #007bff;
+    }
+  }
+}
+
+.groupList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.groupTitle {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.fileItem {
+  padding: 4px 0 4px 12px;
+  cursor: pointer;
+  color: #333;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
