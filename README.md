@@ -67,7 +67,7 @@ Frontend
 bash
 Копировать
 Редактировать
-npm run dev              # Запуск в dev-режиме
+npm start               # Запуск в dev-режиме
 npm run build            # Сборка проекта
 
 
