@@ -1,0 +1,42 @@
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    container_name: pdf-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: pdf_viewer
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./backend
+    container_name: pdf-backend
+    restart: always
+    ports:
+      - "3000:3000" # Поменял на 3000:3000, если твой NestJS слушает 3000, а не 3001
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_NAME: pdf_viewer
+    volumes:
+      - ./backend/uploads:/app/uploads
+    command: npm run start:prod # Если нужно, укажи команду запуска бэкенда (подкорректируй под свой package.json)
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: pdf-frontend
+    restart: always
+    ports:
+      - "3001:3000"
+    depends_on:
+      - backend
